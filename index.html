@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aman Thakur — Portfolio</title>
+    <meta
+      name="description"
+      content="Aman Thakur — Final Year CSE student portfolio: projects, internships, and skills."
+    />
+    <meta property="og:title" content="Aman Thakur — Portfolio" />
+    <meta
+      property="og:description"
+      content="Final Year CSE student portfolio: projects, internships, and skills."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Theme init: avoid FOUC by setting dark class before paint -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var systemDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          if (stored === "dark" || (!stored && systemDark)) {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: "#eff6ff",
+                100: "#dbeafe",
+                200: "#bfdbfe",
+                300: "#93c5fd",
+                400: "#60a5fa",
+                500: "#3b82f6",
+                600: "#2563eb",
+                700: "#1d4ed8",
+                800: "#1e40af",
+                900: "#1e3a8a",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script defer src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- Smooth scrolling behavior -->
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 antialiased"
+  >
+    <!-- Decorative background -->
+    <div
+      aria-hidden="true"
+      class="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 opacity-70 dark:opacity-40"
+        style="
+          background: radial-gradient(
+              1200px 600px at 10% -10%,
+              rgba(59, 130, 246, 0.2),
+              transparent 60%
+            ),
+            radial-gradient(
+              800px 400px at 90% 10%,
+              rgba(99, 102, 241, 0.16),
+              transparent 60%
+            ),
+            radial-gradient(
+              600px 300px at 50% 100%,
+              rgba(59, 130, 246, 0.12),
+              transparent 60%
+            );
+        "
+      ></div>
+      <div
+        class="absolute -top-40 right-[-10%] h-[32rem] w-[32rem] rounded-full blur-3xl"
+        style="
+          background: linear-gradient(
+            135deg,
+            rgba(59, 130, 246, 0.35),
+            rgba(29, 78, 216, 0.15)
+          );
+        "
+      ></div>
+      <div
+        class="absolute -bottom-40 left-[-10%] h-[28rem] w-[28rem] rounded-full blur-3xl"
+        style="
+          background: linear-gradient(
+            135deg,
+            rgba(99, 102, 241, 0.3),
+            rgba(59, 130, 246, 0.12)
+          );
+        "
+      ></div>
+    </div>
+    <!-- Skip to content -->
+    <a
+      href="#about"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:bg-primary-600 focus:text-white focus:px-3 focus:py-2 focus:rounded"
+      >Skip to content</a
+    >
+
+    <!-- Navbar -->
+    <header
+      class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/90 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800"
+    >
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="#home" class="font-semibold text-gray-900 dark:text-white"
+            >AMAN THAKUR</a
+          >
+          <nav>
+            <ul class="hidden md:flex items-center gap-6" id="navLinks">
+              <li>
+                <a
+                  href="#about"
+                  class="nav-link text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#education"
+                  class="nav-link text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Education</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#skills"
+                  class="nav-link text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Skills</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#projects"
+                  class="nav-link text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Projects</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="#contact"
+                  class="nav-link text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <button
+            id="mobileMenuBtn"
+            class="md:hidden inline-flex items-center justify-center p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+            aria-label="Open Menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          id="mobileMenu"
+          class="md:hidden hidden pb-4"
+          role="dialog"
+          aria-modal="true"
+        >
+          <ul class="grid gap-2" id="mobileNavLinks">
+            <li>
+              <a
+                href="#about"
+                class="nav-link block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="#education"
+                class="nav-link block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+                >Education</a
+              >
+            </li>
+            <li>
+              <a
+                href="#skills"
+                class="nav-link block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+                >Skills</a
+              >
+            </li>
+            <li>
+              <a
+                href="#projects"
+                class="nav-link block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+                >Projects</a
+              >
+            </li>
+
+            <li>
+              <a
+                href="#contact"
+                class="nav-link block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main id="home" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Hero Section -->
+      <section class="py-16 sm:py-24" aria-labelledby="hero-title">
+        <div class="grid md:grid-cols-2 gap-10 items-center hero-grid">
+          <div data-aos="fade-up" data-aos-duration="700">
+            <h1
+              id="hero-title"
+              class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900"
+            >
+              AMAN THAKUR
+            </h1>
+            <p class="mt-2 text-lg text-primary-700">
+              Final Year Student | Computer Science & Engineering
+            </p>
+            <p class="mt-6 text-gray-700">
+              I build reliable, user-focused software with strong fundamentals
+              in data structures, algorithms, and full‑stack development.
+            </p>
+            <div class="mt-8 flex items-center gap-4">
+              <a
+                href="#contact"
+                class="inline-flex items-center px-5 py-3 rounded-md bg-primary-600 text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 transition shadow-sm btn-primary"
+                >Hire Me</a
+              >
+              <a
+                href="#projects"
+                class="inline-flex items-center px-5 py-3 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 transition"
+                >View Projects</a
+              >
+            </div>
+          </div>
+          <div
+            class="md:justify-self-end"
+            data-aos="fade-left"
+            data-aos-duration="700"
+          >
+            <div
+              class="aspect-square max-w-xs md:max-w-sm rounded-2xl bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center shadow-inner"
+            >
+              <img
+                src="WhatsApp Image 2025-08-26 at 23.13.43_6719b685.jpg"
+                alt=""
+                style="border-radius: 20px"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section
+        id="about"
+        class="py-16 sm:py-20 border-t border-gray-200"
+        aria-labelledby="about-title"
+      >
+        <h2
+          id="about-title"
+          class="text-2xl font-semibold text-gray-900"
+          data-aos="fade-up"
+        >
+          About
+        </h2>
+        <p
+          class="mt-4 text-gray-700 max-w-3xl"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          I'm Aman Thakur, a final-year Computer Science & Engineering student
+          focused on building robust web applications and solving real-world
+          problems. I enjoy full‑stack development, system design, and writing
+          clean, maintainable code. My goal is to join a product team where I
+          can contribute to impactful features and grow as an engineer.
+        </p>
+      </section>
+
+      <!-- Education Section -->
+      <section
+        id="education"
+        class="py-16 sm:py-20 border-t border-gray-200"
+        aria-labelledby="education-title"
+      >
+        <h2
+          id="education-title"
+          class="text-2xl font-semibold text-gray-900"
+          data-aos="fade-up"
+        >
+          Education
+        </h2>
+        <div class="mt-6 grid gap-6" data-aos="fade-up" data-aos-delay="100">
+          <article class="p-5 rounded-lg border bg-white shadow-sm">
+            <h3 class="font-semibold text-gray-900">
+              B.Tech in Computer Science & Engineering
+            </h3>
+            <p class="text-gray-700">
+              Graphic Era Hill University, Graduation: 2026
+            </p>
+            <ul
+              class="mt-3 grid sm:grid-cols-2 gap-2 text-gray-700 list-disc list-inside"
+            >
+              <li>Data Structures & Algorithms</li>
+              <li>Operating Systems</li>
+              <li>Database Management Systems</li>
+              <li>Computer Networks</li>
+              <li>Web Development</li>
+              <li>Machine Learning</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section
+        id="skills"
+        class="py-16 sm:py-20 border-t border-gray-200"
+        aria-labelledby="skills-title"
+      >
+        <h2
+          id="skills-title"
+          class="text-2xl font-semibold text-gray-900"
+          data-aos="fade-up"
+        >
+          Skills
+        </h2>
+        <ul
+          class="mt-6 flex flex-wrap gap-3"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <li
+            class="px-3 py-1 rounded-full bg-primary-100 text-primary-800 skill-tag"
+          >
+            JavaScript
+          </li>
+          <li
+            class="px-3 py-1 rounded-full bg-primary-100 text-primary-800 skill-tag"
+          >
+            React
+          </li>
+          <li
+            class="px-3 py-1 rounded-full bg-primary-100 text-primary-800 skill-tag"
+          >
+            Node.js
+          </li>
+          <li
+            class="px-3 py-1 rounded-full bg-primary-100 text-primary-800 skill-tag"
+          >
+            Express
+          </li>
+          <li
+            class="px-3 py-1 rounded-full bg-primary-100 text-primary-800 skill-tag"
+          >
+            Tailwind CSS
+          </li>
+          <li
+            class="px-3 py-1 rounded-full bg-primary-100 text-primary-800 skill-tag"
+          >
+            MongoDB
+          </li>
+          <li
+            class="px-3 py-1 rounded-full bg-primary-100 text-primary-800 skill-tag"
+          >
+            REST APIs
+          </li>
+          <li
+            class="px-3 py-1 rounded-full bg-primary-100 text-primary-800 skill-tag"
+          >
+            Git & GitHub
+          </li>
+          <li
+            class="px-3 py-1 rounded-full bg-primary-100 text-primary-800 skill-tag"
+          >
+            DSA
+          </li>
+        </ul>
+      </section>
+
+      <!-- Projects Section -->
+      <section
+        id="projects"
+        class="py-16 sm:py-20 border-t border-gray-200"
+        aria-labelledby="projects-title"
+      >
+        <h2
+          id="projects-title"
+          class="text-2xl font-semibold text-gray-900"
+          data-aos="fade-up"
+        >
+          Projects
+        </h2>
+        <div
+          class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 projects-grid"
+        >
+          <article
+            class="group p-5 rounded-lg border bg-white shadow-sm transition hover:shadow-md project-card"
+            data-aos="fade-up"
+          >
+            <h3 class="font-semibold text-gray-900">
+              User Authentication System
+            </h3>
+            <p class="mt-2 text-gray-700">
+              Built a secure authentication system for web applications using
+              Node.js and Express. Implemented user registration, login, and
+              authentication using JWT-based token authentication. Designed a
+              RESTful API for handling user authentication and secured endpoints
+              with middleware.
+            </p>
+            <p class="mt-2 text-sm text-gray-600">
+              React, Node.js, Express, MongoDB
+            </p>
+            <div class="mt-4 flex gap-3">
+              <a
+                href="https://github.com/AmanThakur100/-Authentication-Using-JS-Tokens-and-Express-JS-"
+                class="text-primary-700 hover:underline"
+                >GitHub</a
+              >
+            </div>
+          </article>
+          <article
+            class="group p-5 rounded-lg border bg-white shadow-sm transition hover:shadow-md project-card"
+            data-aos="fade-up"
+            data-aos-delay="50"
+          >
+            <h3 class="font-semibold text-gray-900">
+              Vidtube – Backend API for Video Sharing Platform
+            </h3>
+            <p class="mt-2 text-gray-700">
+              Built a scalable backend service that powers a video-sharing
+              platform with features like user authentication, video
+              upload/streaming, likes, comments, and subscriptions. Designed
+              RESTful APIs, integrated database management, and implemented
+              secure authentication for reliable performance.
+            </p>
+            <p class="mt-2 text-sm text-gray-600">
+              Next.js, Tailwind, MongoDB, Cloudinary, mutex
+            </p>
+            <div class="mt-4 flex gap-3">
+              <a
+                href="https://github.com/AmanThakur100/videoTube_backend"
+                class="text-primary-700 hover:underline"
+                >GitHub</a
+              >
+            </div>
+          </article>
+          <article
+            class="group p-5 rounded-lg border bg-white shadow-sm transition hover:shadow-md project-card"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <h3 class="font-semibold text-gray-900">Messaging Application</h3>
+            <p class="mt-2 text-gray-700">
+              Developed a real-time messaging application that enables users to
+              send and receive messages instantly.
+            </p>
+            <p class="mt-2 text-sm text-gray-600">
+              JavaScript, JWT-based, React
+            </p>
+            <div class="mt-4 flex gap-3">
+              <a
+                href="https://github.com/AmanThakur100/Chatting-Application-Using-Java"
+                class="text-primary-700 hover:underline"
+                >GitHub</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section
+        id="contact"
+        class="py-16 sm:py-20 border-t border-gray-200"
+        aria-labelledby="contact-title"
+      >
+        <h2
+          id="contact-title"
+          class="text-2xl font-semibold text-gray-900"
+          data-aos="fade-up"
+        >
+          Contact
+        </h2>
+        <div
+          class="mt-6 grid sm:grid-cols-2 gap-6"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <div class="space-y-3">
+            <p class="text-gray-700">
+              Email:
+              <a
+                href="mailto:aman.thakur@example.com"
+                class="text-primary-700 hover:underline"
+                >mayankchand32@gmail.com</a
+              >
+            </p>
+            <p class="text-gray-700">
+              LinkedIn:
+              <a
+                href="https://www.linkedin.com"
+                class="text-primary-700 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+                >linkedin.com/in/amanthakur</a
+              >
+            </p>
+            <p class="text-gray-700">
+              GitHub:
+              <a
+                href="https://github.com"
+                class="text-primary-700 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+                >github.com/amanthakur</a
+              >
+            </p>
+          </div>
+          <div>
+            <a
+              href="/AMAN RESUME.pdf"
+              class="inline-flex items-center px-5 py-3 rounded-md bg-primary-600 text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 transition shadow-sm btn-primary"
+              >Download Resume</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-8 py-8 border-t border-gray-200">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+        <p>© <span id="year"></span> Aman Thakur. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
